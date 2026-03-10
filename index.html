@@ -1,0 +1,210 @@
+<!--
+    ============================================================
+    🚀 Este sitio web fue creado con la asistencia de Antigravity,
+       una IA de Google DeepMind para programación avanzada.
+       https://antigravity.google
+    ============================================================
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joel Paredes - Analista de Sistemas | Portafolio</title>
+    <meta name="description" content="Portafolio de Joel Paredes, Analista de Sistemas, Soporte Técnico y Gestión Digital. J.J. Castelli, Chaco, Argentina.">
+    <!-- Vincula nuestro archivo de estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Fuente pixelada retro "Press Start 2P" + fuente moderna "Space Mono" de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ============================================================
+         PARTÍCULAS FLOTANTES DE FONDO (se crean con JS)
+         Simula polvo/cenizas en una cueva oscura
+         ============================================================ -->
+    <div id="particles-container"></div>
+
+    <!-- ============================================================
+         BARRA DE NAVEGACIÓN con efecto glassmorphism oscuro
+         ============================================================ -->
+    <nav class="navbar">
+        <div class="logo">
+            <!-- Bandera Argentina en formato SVG (mini) -->
+            <svg class="flag" viewBox="0 0 30 20" width="30" height="20">
+                <rect y="0" width="30" height="7" fill="#74ACDF"/>
+                <rect y="7" width="30" height="6" fill="#FFFFFF"/>
+                <rect y="13" width="30" height="7" fill="#74ACDF"/>
+                <circle cx="15" cy="10" r="2.5" fill="#F6B40E" stroke="#85340A" stroke-width="0.3"/>
+            </svg>
+            <span>Joel<span class="highlight">Dev</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#inicio">&gt; Inicio</a></li>
+            <li><a href="#sobre-mi">&gt; Sobre_Mí</a></li>
+            <li><a href="#portafolio">&gt; Portafolio</a></li>
+            <li><a href="#contacto">&gt; Contacto</a></li>
+        </ul>
+        <!-- Botón hamburguesa para móvil -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ============================================================
+         SECCIÓN HERO (INICIO)
+         ============================================================ -->
+    <header id="inicio" class="hero">
+        <div class="hero-content fade-in">
+            <p class="hero-greeting pixel-text">&gt; Hola mundo, soy</p>
+            <h1 class="glitch" data-text="Joel Paredes">Joel Paredes</h1>
+            <h2 class="typing-container">
+                <!-- El JS escribe aquí dinámicamente -->
+                <span id="typed-output"></span><span class="cursor">_</span>
+            </h2>
+            <p class="hero-desc">Analista de Sistemas &bull; Soporte Técnico &bull; Gestión Digital<br>
+            <span class="location-tag">📍 J.J. Castelli, Chaco, Argentina</span></p>
+            <div class="hero-buttons">
+                <a href="#portafolio" class="btn btn-primary pixel-border">&#9654; Ver Proyectos</a>
+                <a href="cv.html" class="btn btn-secondary pixel-border">&#128196; Ver Mi CV</a>
+            </div>
+        </div>
+        <!-- Línea de scanlines estilo monitor CRT retro -->
+        <div class="scanlines"></div>
+    </header>
+
+    <!-- ============================================================
+         SECCIÓN SOBRE MÍ
+         ============================================================ -->
+    <section id="sobre-mi" class="about section-padding fade-in">
+        <div class="container">
+            <h2 class="section-title pixel-text">&lt; Sobre Mí /&gt;</h2>
+            <p class="section-subtitle">// Conocé mi perfil y lo que manejo</p>
+
+            <div class="about-content">
+                <div class="about-text terminal-box">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="terminal-title">joel@portfolio:~$</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="cmd">&gt;</span> Analista de Sistemas con experiencia práctica en <strong>administración web</strong>, producción audiovisual, soporte técnico y gestión de contenidos digitales.</p>
+                        <p><span class="cmd">&gt;</span> Manejo de herramientas de <strong>automatización e IA aplicada</strong>. Proactivo, con facilidad para aprender nuevas tecnologías.</p>
+                        <p><span class="cmd">&gt;</span> Actualmente explorando el mundo de las <strong>Inteligencias Artificiales</strong>: Open Claw, Open Code, IAs locales y todo lo que viene.</p>
+                    </div>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-tag"><span class="skill-icon">🌐</span> WordPress & Elementor</div>
+                    <div class="skill-tag"><span class="skill-icon">💻</span> HTML / CSS / JS</div>
+                    <div class="skill-tag"><span class="skill-icon">🎬</span> OBS Studio & Streaming</div>
+                    <div class="skill-tag"><span class="skill-icon">🤖</span> IA Aplicada & Prompts</div>
+                    <div class="skill-tag"><span class="skill-icon">🗄️</span> SQL & Git/GitHub</div>
+                    <div class="skill-tag"><span class="skill-icon">🔧</span> Soporte & Reparación PC</div>
+                    <div class="skill-tag"><span class="skill-icon">📊</span> Trello & Gestión</div>
+                    <div class="skill-tag"><span class="skill-icon">🎨</span> Flyers & Diseño Visual</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECCIÓN PORTAFOLIO
+         ============================================================ -->
+    <section id="portafolio" class="portfolio section-padding fade-in">
+        <div class="container">
+            <h2 class="section-title pixel-text">&lt; Portafolio /&gt;</h2>
+            <p class="section-subtitle">// Proyectos y trabajos realizados</p>
+
+            <div class="projects-grid">
+                <!-- Tarjeta 1 -->
+                <article class="project-card pixel-border">
+                    <div class="project-image">
+                        <span class="project-placeholder">🚀</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Landing Page para Eventos</h3>
+                        <p>Diseño de landing pages con integración de mapas y confirmación vía API de WhatsApp.</p>
+                        <a href="#" class="btn btn-outline pixel-border" target="_blank">&gt; Ver Demo</a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 2 -->
+                <article class="project-card pixel-border">
+                    <div class="project-image">
+                        <span class="project-placeholder">🎫</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Cartas de Invitación Digitales</h3>
+                        <p>Invitaciones interactivas y animadas, totalmente responsivas para compartir por redes.</p>
+                        <a href="#" class="btn btn-outline pixel-border" target="_blank">&gt; Ver Demo</a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 3 -->
+                <article class="project-card pixel-border">
+                    <div class="project-image">
+                        <span class="project-placeholder">🤖</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Sistema de Soporte (Demo)</h3>
+                        <p>Diseño de workflow para categorización de tickets y control de tiempos de respuesta.</p>
+                        <a href="#" class="btn btn-outline pixel-border" target="_blank">&gt; Ver Demo</a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 4 - Próximamente -->
+                <article class="project-card pixel-border coming-soon">
+                    <div class="project-image">
+                        <span class="project-placeholder">⏳</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Próximos Proyectos IA</h3>
+                        <p>Pronto subiré aplicaciones usando IAs locales y nuevas tecnologías del ecosistema.</p>
+                        <a href="#contacto" class="btn btn-outline pixel-border">&gt; Contactame</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECCIÓN CONTACTO
+         ============================================================ -->
+    <section id="contacto" class="contact section-padding fade-in">
+        <div class="container">
+            <h2 class="section-title pixel-text">&lt; Contacto /&gt;</h2>
+            <p class="section-subtitle">// ¿Listo para arrancar tu proyecto?</p>
+            <p class="contact-desc">Hablemos sobre diseño, software y cómo potenciar tu negocio.</p>
+            <div class="contact-links">
+                <a href="mailto:joeleliaspared@gmail.com" class="btn btn-primary pixel-border">📧 joeleliaspared@gmail.com</a>
+                <a href="tel:+543644165579" class="btn btn-secondary pixel-border">📞 3644165579</a>
+                <a href="https://github.com/eliasopen21" class="btn btn-secondary pixel-border" target="_blank">🐙 GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer>
+        <div class="footer-flag">
+            <!-- Bandera Argentina grande en el footer -->
+            <svg viewBox="0 0 90 60" width="60" height="40">
+                <rect y="0" width="90" height="20" fill="#74ACDF"/>
+                <rect y="20" width="90" height="20" fill="#FFFFFF"/>
+                <rect y="40" width="90" height="20" fill="#74ACDF"/>
+                <circle cx="45" cy="30" r="7" fill="#F6B40E" stroke="#85340A" stroke-width="0.8"/>
+            </svg>
+        </div>
+        <p class="pixel-text">&copy; <span id="year"></span> Joel Paredes - Hecho en Argentina 🇦🇷</p>
+        <p class="footer-sub">Analista de Sistemas &bull; Todos los derechos reservados.</p>
+        <p class="footer-sub" style="margin-top:8px; font-size:0.7rem; opacity:0.5;">Creado con ❤️ y la asistencia de <a href="https://antigravity.google" target="_blank" style="color:var(--accent); text-decoration:none;">Antigravity AI</a></p>
+    </footer>
+
+    <!-- Vincula nuestro archivo de scripts JS -->
+    <script src="script.js"></script>
+</body>
+</html>
