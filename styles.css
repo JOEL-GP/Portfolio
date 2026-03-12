@@ -23,9 +23,9 @@
     --accent-glow:    rgba(0, 255, 170, 0.25);
     --accent-strong:  rgba(0, 255, 170, 0.5);
 
-    --violet:         #7b61ff;
-    --violet-dim:     rgba(123, 97, 255, 0.12);
-    --violet-glow:    rgba(123, 97, 255, 0.25);
+    --violet:         #a855f7;
+    --violet-dim:     rgba(168, 85, 247, 0.12);
+    --violet-glow:    rgba(168, 85, 247, 0.4);
 
     --celeste:        #74ACDF;
     --gold:           #F6B40E;
@@ -117,9 +117,26 @@ strong {
     font-family: var(--font-mono);
 }
 
-/* =========================================================================
-   REVEAL ANIMATIONS — Snappy & Modern
-   ========================================================================= */
+/* Glass Card — Reusable glassmorphism with intensified violet outline */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    transition: 
+        border-color 0.4s var(--ease-out),
+        box-shadow 0.4s var(--ease-out),
+        transform 0.4s var(--ease-out);
+}
+
+.glass-card:hover {
+    border-color: var(--violet-glow);
+    box-shadow: 0 0 20px var(--violet-dim);
+}
 .reveal-element {
     opacity: 0;
     transform: translateY(20px) scale(0.98);
