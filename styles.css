@@ -124,8 +124,9 @@ strong {
     opacity: 0;
     transform: translateY(20px) scale(0.98);
     transition: 
-        opacity 0.6s var(--ease-out),
-        transform 0.6s var(--ease-out);
+        opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
 }
 
 .reveal-element.active {
@@ -349,58 +350,75 @@ strong {
     background: var(--bg-void);
 }
 
-/* Morphing Mesh */
+/* Optimized Morphing Mesh — Using Radial Gradients instead of heavy Filters */
 .mesh-container {
     position: absolute;
     inset: 0;
-    filter: blur(80px);
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .mesh-layer {
     position: absolute;
     border-radius: 50%;
-    filter: blur(60px);
+    will-change: transform;
     animation: mesh-float 20s infinite alternate ease-in-out;
 }
 
 .layer-1 {
-    width: 60%;
-    height: 70%;
-    background: var(--accent-dim);
-    top: -10%;
-    left: -10%;
-    opacity: 0.4;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+    top: -20%;
+    left: -20%;
     animation-duration: 25s;
 }
 
 .layer-2 {
-    width: 50%;
-    height: 60%;
-    background: var(--violet-dim);
-    bottom: -10%;
-    right: -10%;
-    opacity: 0.3;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, var(--violet-dim) 0%, transparent 70%);
+    bottom: -15%;
+    right: -15%;
     animation-duration: 30s;
     animation-delay: -5s;
 }
 
 .layer-3 {
-    width: 40%;
-    height: 50%;
-    background: var(--accent-glow);
-    top: 30%;
-    left: 40%;
-    opacity: 0.2;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+    top: 20%;
+    left: 30%;
+    opacity: 0.15;
     animation-duration: 20s;
     animation-delay: -10s;
 }
 
+/* Katana / Anime Slash Motifs */
+.katana-slash {
+    position: absolute;
+    width: 150%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--violet), transparent);
+    transform: rotate(-15deg);
+    top: 40%;
+    left: -25%;
+    opacity: 0.2;
+    z-index: 2;
+    filter: drop-shadow(0 0 10px var(--violet));
+}
+
+.katana-slash.alt {
+    top: 60%;
+    transform: rotate(-12deg);
+    opacity: 0.1;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
 @keyframes mesh-float {
-    0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
-    33%  { transform: translate(10%, 15%) rotate(10deg) scale(1.1); }
-    66%  { transform: translate(-10%, 20%) rotate(-10deg) scale(0.9); }
-    100% { transform: translate(5%, -5%) rotate(5deg) scale(1.05); }
+    0%   { transform: translate(0, 0) rotate(0deg) scale(1.1); }
+    50%  { transform: translate(5%, 10%) rotate(5deg) scale(1); }
+    100% { transform: translate(-5%, 5%) rotate(-5deg) scale(1.2); }
 }
 
 .grain-overlay {
@@ -600,7 +618,21 @@ strong {
     filter: blur(40px) !important;
 }
 
-/* Spline 3D Canvas Area (Removed for Background Refinement) */
+/* UI/UX Skill Card Specifics */
+#skill-uupm {
+    border: 1px solid var(--violet-glow);
+    background: linear-gradient(135deg, var(--bg-card), var(--violet-dim));
+}
+
+#skill-uupm:hover {
+    border-color: var(--violet);
+    box-shadow: 0 0 20px var(--violet-dim);
+}
+
+#skill-uupm .card-tag {
+    color: var(--violet);
+    border-color: var(--violet-dim);
+}
 
 .hero-glow {
     position: absolute;
