@@ -198,6 +198,44 @@ function initSmoothScroll() {
 }
 
 // ─────────────────────────────────────────────────────────────
+// 8. KATANA CURSOR — Follow logic & Trail
+// ─────────────────────────────────────────────────────────────
+function initKatanaCursor() {
+    const cursor = document.getElementById("katana-cursor");
+    if (!cursor || window.matchMedia("(pointer: coarse)").matches) return;
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Smooth follow loop
+    function animate() {
+        let dx = mouseX - cursorX;
+        let dy = mouseY - cursorY;
+
+        cursorX += dx * 0.15;
+        cursorY += dy * 0.15;
+
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Active state on interactives
+    const interactives = document.querySelectorAll('a, button, .glass-card, .logo');
+    interactives.forEach(el => {
+        el.addEventListener("mouseenter", () => cursor.classList.add("active"));
+        el.addEventListener("mouseleave", () => cursor.classList.remove("active"));
+    });
+}
+
+// ─────────────────────────────────────────────────────────────
 // INITIALIZATION
 // ─────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
