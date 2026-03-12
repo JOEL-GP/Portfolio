@@ -10,84 +10,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joel Paredes - Analista de Sistemas | Portafolio</title>
-    <meta name="description" content="Portafolio de Joel Paredes, Analista de Sistemas, Soporte Técnico y Gestión Digital. J.J. Castelli, Chaco, Argentina.">
-    <!-- Vincula nuestro archivo de estilos CSS -->
+    <title>Joel Paredes — Portfolio Creativo | Analista de Sistemas</title>
+    <meta name="description" content="Portfolio de Joel Paredes: Analista de Sistemas, creador digital y entusiasta de IA. Diseño web, soporte técnico y gestión digital en J.J. Castelli, Chaco, Argentina.">
+
+    <!-- Google Fonts: Playfair Display (Serif) + JetBrains Mono (Monospace) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
-    <!-- Fuente pixelada retro "Press Start 2P" + fuente moderna "Space Mono" de Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <!-- ============================================================
-         PARTÍCULAS FLOTANTES DE FONDO (se crean con JS)
-         Simula polvo/cenizas en una cueva oscura
+         PARTÍCULAS FLOTANTES AMBIENTALES
          ============================================================ -->
-    <div id="particles-container"></div>
+    <div id="particles-container" aria-hidden="true"></div>
 
     <!-- ============================================================
-         BARRA DE NAVEGACIÓN con efecto glassmorphism oscuro
+         NAVEGACIÓN GLASSMORPHISM
          ============================================================ -->
-    <nav class="navbar">
-        <div class="logo">
-            <!-- Bandera Argentina en formato SVG (mini) -->
-            <svg class="flag" viewBox="0 0 30 20" width="30" height="20">
-                <rect y="0" width="30" height="7" fill="#74ACDF"/>
-                <rect y="7" width="30" height="6" fill="#FFFFFF"/>
-                <rect y="13" width="30" height="7" fill="#74ACDF"/>
-                <circle cx="15" cy="10" r="2.5" fill="#F6B40E" stroke="#85340A" stroke-width="0.3"/>
-            </svg>
-            <span>Joel<span class="highlight">Dev</span></span>
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#inicio" class="logo">
+                <!-- Bandera Argentina mini SVG -->
+                <svg class="flag-icon" viewBox="0 0 30 20" width="28" height="18" aria-label="Bandera Argentina">
+                    <rect y="0" width="30" height="7" fill="#74ACDF"/>
+                    <rect y="7" width="30" height="6" fill="#FFFFFF"/>
+                    <rect y="13" width="30" height="7" fill="#74ACDF"/>
+                    <circle cx="15" cy="10" r="2.5" fill="#F6B40E" stroke="#85340A" stroke-width="0.3"/>
+                </svg>
+                <span class="logo-text">Joel<span class="logo-accent">Dev</span></span>
+            </a>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
+                <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                <li><a href="cv.html" class="nav-link nav-cta">Ver CV</a></li>
+            </ul>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-        <ul class="nav-links">
-            <li><a href="#inicio">&gt; Inicio</a></li>
-            <li><a href="#sobre-mi">&gt; Sobre_Mí</a></li>
-            <li><a href="#portafolio">&gt; Portafolio</a></li>
-            <li><a href="#contacto">&gt; Contacto</a></li>
-        </ul>
-        <!-- Botón hamburguesa para móvil -->
-        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
-            <span></span><span></span><span></span>
-        </button>
     </nav>
 
     <!-- ============================================================
-         SECCIÓN HERO (INICIO)
+         MAIN CONTENT
          ============================================================ -->
-    <header id="inicio" class="hero">
-        <div class="hero-content fade-in">
-            <p class="hero-greeting pixel-text">&gt; Hola mundo, soy</p>
-            <h1 class="glitch" data-text="Joel Paredes">Joel Paredes</h1>
-            <h2 class="typing-container">
-                <!-- El JS escribe aquí dinámicamente -->
-                <span id="typed-output"></span><span class="cursor">_</span>
-            </h2>
-            <p class="hero-desc">Analista de Sistemas &bull; Soporte Técnico &bull; Gestión Digital<br>
-            <span class="location-tag">📍 J.J. Castelli, Chaco, Argentina</span></p>
-            <div class="hero-buttons">
-                <a href="#portafolio" class="btn btn-primary pixel-border">&#9654; Ver Proyectos</a>
-                <a href="cv.html" class="btn btn-secondary pixel-border">&#128196; Ver Mi CV</a>
+    <main>
+
+        <!-- ========================================================
+             HERO — Asymmetric Layout con Spline 3D
+             ======================================================== -->
+            <!-- Morphing Glass Mesh Background -->
+            <div class="hero-bg-wrapper">
+                <div class="mesh-container">
+                    <div class="mesh-layer layer-1"></div>
+                    <div class="mesh-layer layer-2"></div>
+                    <div class="mesh-layer layer-3"></div>
+                </div>
+                <div class="hero-overlay"></div>
+                <div class="grain-overlay"></div>
             </div>
-        </div>
-        <!-- Línea de scanlines estilo monitor CRT retro -->
-        <div class="scanlines"></div>
-    </header>
 
-    <!-- ============================================================
-         SECCIÓN SOBRE MÍ
-         ============================================================ -->
-    <section id="sobre-mi" class="about section-padding fade-in">
-        <div class="container">
-            <h2 class="section-title pixel-text">&lt; Sobre Mí /&gt;</h2>
-            <p class="section-subtitle">// Conocé mi perfil y lo que manejo</p>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <p class="hero-eyebrow">
+                        <span class="eyebrow-line"></span>
+                        <span class="mono-text">Analista de Sistemas · Creador Digital</span>
+                    </p>
+                    <h1 class="hero-title" data-text="Joel Paredes">
+                        Joel<br><span class="title-accent">Paredes</span>
+                    </h1>
+                    <div class="hero-typing">
+                        <span class="mono-text typing-prefix">&gt;&nbsp;</span>
+                        <span id="typed-output" class="mono-text"></span>
+                        <span class="cursor">_</span>
+                    </div>
+                    <p class="hero-description">
+                        Transformo ideas en experiencias digitales. Soporte técnico, gestión de contenidos y exploración constante de <strong>Inteligencia Artificial</strong>.
+                    </p>
+                    <p class="hero-location mono-text">
+                        📍 J.J. Castelli, Chaco, Argentina
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#portafolio" class="btn btn-primary" id="btn-projects">
+                            <span>Ver Proyectos</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                        </a>
+                        <a href="cv.html" class="btn btn-ghost" id="btn-cv">
+                            <span>Mi CV</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-            <div class="about-content">
-                <div class="about-text terminal-box">
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator" aria-hidden="true">
+                <span class="mono-text">scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </header>
+
+        <!-- ========================================================
+             SOBRE MÍ — Asymmetric Grid con Overlap
+             ======================================================== -->
+        <section id="sobre-mi" class="about">
+            <div class="section-header">
+                <span class="section-tag mono-text">01</span>
+                <h2 class="section-title">Sobre Mí</h2>
+                <p class="section-subtitle mono-text">// Conocé mi perfil y lo que manejo</p>
+            </div>
+
+            <div class="about-grid">
+                <!-- Terminal box — overlaps into the decorative column -->
+                <div class="about-terminal glass-card reveal-element">
                     <div class="terminal-header">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
-                        <span class="terminal-title">joel@portfolio:~$</span>
+                        <div class="terminal-dots">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <span class="terminal-title mono-text">joel@portfolio:~$</span>
                     </div>
                     <div class="terminal-body">
                         <p><span class="cmd">&gt;</span> Analista de Sistemas con experiencia práctica en <strong>administración web</strong>, producción audiovisual, soporte técnico y gestión de contenidos digitales.</p>
@@ -96,115 +143,180 @@
                     </div>
                 </div>
 
-                <div class="skills-grid">
-                    <div class="skill-tag"><span class="skill-icon">🌐</span> WordPress & Elementor</div>
-                    <div class="skill-tag"><span class="skill-icon">💻</span> HTML / CSS / JS</div>
-                    <div class="skill-tag"><span class="skill-icon">🎬</span> OBS Studio & Streaming</div>
-                    <div class="skill-tag"><span class="skill-icon">🤖</span> IA Aplicada & Prompts</div>
-                    <div class="skill-tag"><span class="skill-icon">🗄️</span> SQL & Git/GitHub</div>
-                    <div class="skill-tag"><span class="skill-icon">🔧</span> Soporte & Reparación PC</div>
-                    <div class="skill-tag"><span class="skill-icon">📊</span> Trello & Gestión</div>
-                    <div class="skill-tag"><span class="skill-icon">🎨</span> Flyers & Diseño Visual</div>
+                <!-- Decorative accent element -->
+                <div class="about-accent" aria-hidden="true">
+                    <div class="accent-blob"></div>
+                </div>
+
+                <!-- Skills Grid -->
+                <div class="about-skills">
+                    <h3 class="skills-label mono-text reveal-element">Tech Stack</h3>
+                    <div class="skills-grid">
+                        <div class="skill-tag glass-card reveal-element"><span class="skill-icon">🌐</span><span>WordPress & Elementor</span></div>
+                        <div class="skill-tag glass-card reveal-element"><span class="skill-icon">💻</span><span>HTML / CSS / JS</span></div>
+                        <div class="skill-tag glass-card reveal-element"><span class="skill-icon">🎬</span><span>OBS Studio & Streaming</span></div>
+                        <div class="skill-tag glass-card reveal-element"><span class="skill-icon">🤖</span><span>IA Aplicada & Prompts</span></div>
+                        <div class="skill-tag glass-card reveal-element"><span class="skill-icon">🗄️</span><span>SQL & Git/GitHub</span></div>
+                        <div class="skill-tag glass-card reveal-element"><span class="skill-icon">🔧</span><span>Soporte & Reparación PC</span></div>
+                        <div class="skill-tag glass-card reveal-element"><span class="skill-icon">📊</span><span>Trello & Gestión</span></div>
+                        <div class="skill-tag glass-card reveal-element"><span class="skill-icon">🎨</span><span>Flyers & Diseño Visual</span></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ============================================================
-         SECCIÓN PORTAFOLIO
-         ============================================================ -->
-    <section id="portafolio" class="portfolio section-padding fade-in">
-        <div class="container">
-            <h2 class="section-title pixel-text">&lt; Portafolio /&gt;</h2>
-            <p class="section-subtitle">// Proyectos y trabajos realizados</p>
+        <!-- ========================================================
+             PORTAFOLIO — Bento Grid
+             ======================================================== -->
+        <section id="portafolio" class="portfolio">
+            <div class="section-header">
+                <span class="section-tag mono-text">02</span>
+                <h2 class="section-title">Portafolio</h2>
+                <p class="section-subtitle mono-text">// Proyectos y trabajos realizados</p>
+            </div>
 
-            <div class="projects-grid">
-                <!-- Tarjeta 1 -->
-                <article class="project-card pixel-border">
-                    <div class="project-image">
-                        <span class="project-placeholder">🚀</span>
+            <div class="bento-grid">
+                <!-- Card 1 — Featured (large) -->
+                <article class="bento-card bento-featured glass-card reveal-element" id="project-1">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="card-content">
+                        <span class="card-tag mono-text">Web Design</span>
+                        <h3 class="card-title">Landing Page para Eventos</h3>
+                        <p class="card-desc">Diseño de landing pages con integración de mapas y confirmación vía API de WhatsApp.</p>
+                        <a href="#" class="card-link" target="_blank">
+                            <span>Ver Demo</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                        </a>
                     </div>
-                    <div class="project-info">
-                        <h3>Landing Page para Eventos</h3>
-                        <p>Diseño de landing pages con integración de mapas y confirmación vía API de WhatsApp.</p>
-                        <a href="#" class="btn btn-outline pixel-border" target="_blank">&gt; Ver Demo</a>
+                    <div class="card-visual">
+                        <span class="card-emoji">🚀</span>
                     </div>
                 </article>
 
-                <!-- Tarjeta 2 -->
-                <article class="project-card pixel-border">
-                    <div class="project-image">
-                        <span class="project-placeholder">🎫</span>
+                <!-- Card 2 — Standard -->
+                <article class="bento-card glass-card reveal-element" id="project-2">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="card-content">
+                        <span class="card-tag mono-text">Creative</span>
+                        <h3 class="card-title">Cartas de Invitación Digitales</h3>
+                        <p class="card-desc">Invitaciones interactivas y animadas, totalmente responsivas para compartir por redes.</p>
+                        <a href="#" class="card-link" target="_blank">
+                            <span>Ver Demo</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                        </a>
                     </div>
-                    <div class="project-info">
-                        <h3>Cartas de Invitación Digitales</h3>
-                        <p>Invitaciones interactivas y animadas, totalmente responsivas para compartir por redes.</p>
-                        <a href="#" class="btn btn-outline pixel-border" target="_blank">&gt; Ver Demo</a>
-                    </div>
-                </article>
-
-                <!-- Tarjeta 3 -->
-                <article class="project-card pixel-border">
-                    <div class="project-image">
-                        <span class="project-placeholder">🤖</span>
-                    </div>
-                    <div class="project-info">
-                        <h3>Sistema de Soporte (Demo)</h3>
-                        <p>Diseño de workflow para categorización de tickets y control de tiempos de respuesta.</p>
-                        <a href="#" class="btn btn-outline pixel-border" target="_blank">&gt; Ver Demo</a>
+                    <div class="card-visual">
+                        <span class="card-emoji">🎫</span>
                     </div>
                 </article>
 
-                <!-- Tarjeta 4 - Próximamente -->
-                <article class="project-card pixel-border coming-soon">
-                    <div class="project-image">
-                        <span class="project-placeholder">⏳</span>
+                <!-- Card 3 — Standard -->
+                <article class="bento-card glass-card reveal-element" id="project-3">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="card-content">
+                        <span class="card-tag mono-text">Systems</span>
+                        <h3 class="card-title">Sistema de Soporte</h3>
+                        <p class="card-desc">Diseño de workflow para categorización de tickets y control de tiempos de respuesta.</p>
+                        <a href="#" class="card-link" target="_blank">
+                            <span>Ver Demo</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                        </a>
                     </div>
-                    <div class="project-info">
-                        <h3>Próximos Proyectos IA</h3>
-                        <p>Pronto subiré aplicaciones usando IAs locales y nuevas tecnologías del ecosistema.</p>
-                        <a href="#contacto" class="btn btn-outline pixel-border">&gt; Contactame</a>
+                    <div class="card-visual">
+                        <span class="card-emoji">🤖</span>
+                    </div>
+                </article>
+
+                <!-- Card 4 — Coming Soon (wide) -->
+                <article class="bento-card bento-wide glass-card reveal-element coming-soon" id="project-4">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="card-content">
+                        <span class="card-tag mono-text">Próximamente</span>
+                        <h3 class="card-title">Próximos Proyectos IA</h3>
+                        <p class="card-desc">Pronto subiré aplicaciones usando IAs locales y nuevas tecnologías del ecosistema.</p>
+                        <a href="#contacto" class="card-link">
+                            <span>Contactame</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                        </a>
+                    </div>
+                    <div class="card-visual">
+                        <span class="card-emoji">⏳</span>
+                    </div>
+                </article>
+
+                <!-- Decorative Mesh Card -->
+                <article class="bento-card bento-spline glass-card reveal-element" id="project-visual">
+                    <div class="mesh-container mini-mesh">
+                        <div class="mesh-layer layer-1"></div>
+                        <div class="mesh-layer layer-2"></div>
                     </div>
                 </article>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ============================================================
-         SECCIÓN CONTACTO
-         ============================================================ -->
-    <section id="contacto" class="contact section-padding fade-in">
-        <div class="container">
-            <h2 class="section-title pixel-text">&lt; Contacto /&gt;</h2>
-            <p class="section-subtitle">// ¿Listo para arrancar tu proyecto?</p>
-            <p class="contact-desc">Hablemos sobre diseño, software y cómo potenciar tu negocio.</p>
-            <div class="contact-links">
-                <a href="mailto:joeleliaspared@gmail.com" class="btn btn-primary pixel-border">📧 joeleliaspared@gmail.com</a>
-                <a href="tel:+543644165579" class="btn btn-secondary pixel-border">📞 3644165579</a>
-                <a href="https://github.com/eliasopen21" class="btn btn-secondary pixel-border" target="_blank">🐙 GitHub</a>
+        <!-- ========================================================
+             CONTACTO
+             ======================================================== -->
+        <section id="contacto" class="contact">
+            <div class="contact-grid">
+                <div class="contact-text reveal-element">
+                    <div class="section-header section-header--left">
+                        <span class="section-tag mono-text">03</span>
+                        <h2 class="section-title">Hablemos</h2>
+                        <p class="section-subtitle mono-text">// ¿Listo para arrancar tu proyecto?</p>
+                    </div>
+                    <p class="contact-description">
+                        Diseño, software, automatización e inteligencia artificial. Escribime y hagamos realidad tu idea.
+                    </p>
+                </div>
+
+                <div class="contact-card glass-card reveal-element">
+                    <a href="mailto:joeleliaspared@gmail.com" class="contact-item" id="contact-email">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <span class="contact-label mono-text">Email</span>
+                            <span class="contact-value">joeleliaspared@gmail.com</span>
+                        </div>
+                    </a>
+                    <a href="tel:+543644165579" class="contact-item" id="contact-phone">
+                        <span class="contact-icon">📞</span>
+                        <div>
+                            <span class="contact-label mono-text">Teléfono</span>
+                            <span class="contact-value">3644165579</span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/JOEL-GP" class="contact-item" target="_blank" id="contact-github">
+                        <span class="contact-icon">🐙</span>
+                        <div>
+                            <span class="contact-label mono-text">GitHub</span>
+                            <span class="contact-value">JOEL-GP</span>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    </main>
 
     <!-- ============================================================
          FOOTER
          ============================================================ -->
-    <footer>
-        <div class="footer-flag">
-            <!-- Bandera Argentina grande en el footer -->
-            <svg viewBox="0 0 90 60" width="60" height="40">
-                <rect y="0" width="90" height="20" fill="#74ACDF"/>
-                <rect y="20" width="90" height="20" fill="#FFFFFF"/>
-                <rect y="40" width="90" height="20" fill="#74ACDF"/>
-                <circle cx="45" cy="30" r="7" fill="#F6B40E" stroke="#85340A" stroke-width="0.8"/>
-            </svg>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-flag">
+                <svg viewBox="0 0 90 60" width="50" height="33" aria-label="Bandera Argentina">
+                    <rect y="0" width="90" height="20" fill="#74ACDF"/>
+                    <rect y="20" width="90" height="20" fill="#FFFFFF"/>
+                    <rect y="40" width="90" height="20" fill="#74ACDF"/>
+                    <circle cx="45" cy="30" r="7" fill="#F6B40E" stroke="#85340A" stroke-width="0.8"/>
+                </svg>
+            </div>
+            <p class="footer-copy mono-text">&copy; <span id="year"></span> Joel Paredes — Hecho en Argentina 🇦🇷</p>
+            <p class="footer-sub mono-text">Analista de Sistemas · Todos los derechos reservados</p>
+            <p class="footer-credit mono-text">Creado con ❤️ y la asistencia de <a href="https://antigravity.google" target="_blank" rel="noopener">Antigravity AI</a></p>
         </div>
-        <p class="pixel-text">&copy; <span id="year"></span> Joel Paredes - Hecho en Argentina 🇦🇷</p>
-        <p class="footer-sub">Analista de Sistemas &bull; Todos los derechos reservados.</p>
-        <p class="footer-sub" style="margin-top:8px; font-size:0.7rem; opacity:0.5;">Creado con ❤️ y la asistencia de <a href="https://antigravity.google" target="_blank" style="color:var(--accent); text-decoration:none;">Antigravity AI</a></p>
     </footer>
 
-    <!-- Vincula nuestro archivo de scripts JS -->
     <script src="script.js"></script>
 </body>
 </html>

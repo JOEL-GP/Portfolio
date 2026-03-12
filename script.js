@@ -1,16 +1,15 @@
 /**
  * ============================================================================
- * SCRIPT PRINCIPAL — Portafolio Retro Dark de Joel Paredes
- * Aquí está toda la lógica de las animaciones e interactividad.
+ * SCRIPT PRINCIPAL — Portfolio Awwwards-Style de Joel Paredes
+ * Scroll Reveals, Typing Effect, Particles, Navbar, Mobile Menu
  * ============================================================================
  */
 
 // ─────────────────────────────────────────────────────────────
-// 1. EFECTO DE ESCRITURA DINÁMICA (Máquina de Escribir)
+// 1. TYPING EFFECT
 // ─────────────────────────────────────────────────────────────
 const typedTextSpan = document.getElementById("typed-output");
 
-// Las frases que van a ir "escribiéndose" en el Hero
 const wordsArray = [
     "Analista de Sistemas",
     "Desarrollador Web",
@@ -19,9 +18,9 @@ const wordsArray = [
     "Freelancer Creativo"
 ];
 
-const typingDelay = 80;       // Milisegundos para escribir cada letra
-const erasingDelay = 40;      // Milisegundos para borrar cada letra
-const newWordDelay = 2200;    // Pausa antes de borrar la palabra terminada
+const typingDelay = 70;
+const erasingDelay = 35;
+const newWordDelay = 2500;
 let wordIndex = 0;
 let charIndex = 0;
 
@@ -42,93 +41,132 @@ function erase() {
         setTimeout(erase, erasingDelay);
     } else {
         wordIndex = (wordIndex + 1) % wordsArray.length;
-        setTimeout(type, typingDelay + 400);
+        setTimeout(type, typingDelay + 300);
     }
 }
 
 // ─────────────────────────────────────────────────────────────
-// 2. PARTÍCULAS FLOTANTES (Polvo de cueva)
+// 2. FLOATING PARTICLES
 // ─────────────────────────────────────────────────────────────
 function createParticles() {
     const container = document.getElementById("particles-container");
     if (!container) return;
 
-    const particleCount = 35; // Cantidad de partículas
+    const particleCount = 40;
+    const colors = [
+        'rgba(0, 255, 170, 0.6)',   // Emerald
+        'rgba(123, 97, 255, 0.5)',   // Violet
+        'rgba(116, 172, 223, 0.4)',  // Celeste
+        'rgba(0, 255, 170, 0.3)',    // Dim emerald
+    ];
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement("div");
         particle.classList.add("particle");
 
-        // Tamaño aleatorio entre 2px y 5px
-        const size = Math.random() * 3 + 2;
+        const size = Math.random() * 3 + 1.5;
         particle.style.width = size + "px";
         particle.style.height = size + "px";
-
-        // Posición horizontal aleatoria en toda la pantalla
         particle.style.left = Math.random() * 100 + "%";
 
-        // Duración de la animación aleatoria entre 8s y 20s
-        const duration = Math.random() * 12 + 8;
+        const duration = Math.random() * 15 + 10;
         particle.style.animationDuration = duration + "s";
 
-        // Un retraso aleatorio para que no salgan todas juntas
-        const delay = Math.random() * 15;
+        const delay = Math.random() * 20;
         particle.style.animationDelay = delay + "s";
 
-        // Alternar color entre verde neón y celeste argentino
-        if (Math.random() > 0.6) {
-            particle.style.background = "#74ACDF"; // Celeste argentino
-        }
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
 
         container.appendChild(particle);
     }
 }
 
 // ─────────────────────────────────────────────────────────────
-// 3. EFECTO FADE-IN AL HACER SCROLL (Intersection Observer)
+// 3. SCROLL REVEAL — IntersectionObserver with stagger
 // ─────────────────────────────────────────────────────────────
-function initScrollAnimations() {
-    const faders = document.querySelectorAll(".fade-in");
+function initScrollReveal() {
+    const elements = document.querySelectorAll(".reveal-element");
 
-    const options = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const observer = new IntersectionObserver(function (entries, obs) {
+    const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
+                entry.target.classList.add("active");
                 obs.unobserve(entry.target);
             }
         });
-    }, options);
+    }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    });
 
-    faders.forEach(fader => observer.observe(fader));
+    elements.forEach(el => observer.observe(el));
 }
 
 // ─────────────────────────────────────────────────────────────
-// 4. MENÚ HAMBURGUESA (Móvil)
+// 3.5 MESH MOUSE TRACKING
 // ─────────────────────────────────────────────────────────────
-function initMobileMenu() {
-    const toggle = document.getElementById("menu-toggle");
-    const navLinks = document.querySelector(".nav-links");
-    if (!toggle || !navLinks) return;
+function initMeshInteraction() {
+    const meshLayers = document.querySelectorAll(".mesh-layer");
+    if (!meshLayers.length) return;
 
-    toggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-    });
-
-    // Cerrar el menú al hacer clic en un enlace
-    navLinks.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-            navLinks.classList.remove("active");
+    document.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 30;
+        const y = (e.clientY / window.innerHeight - 0.5) * 30;
+        
+        meshLayers.forEach((layer, index) => {
+            const depth = (index + 1) * 0.4;
+            layer.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
         });
     });
 }
 
 // ─────────────────────────────────────────────────────────────
-// 5. AÑO AUTOMÁTICO EN EL FOOTER
+// 4. NAVBAR — Background change on scroll
+// ─────────────────────────────────────────────────────────────
+function initNavbar() {
+    const navbar = document.getElementById("navbar");
+    if (!navbar) return;
+
+    let lastScroll = 0;
+
+    window.addEventListener("scroll", () => {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+
+        lastScroll = currentScroll;
+    }, { passive: true });
+}
+
+// ─────────────────────────────────────────────────────────────
+// 5. MOBILE MENU
+// ─────────────────────────────────────────────────────────────
+function initMobileMenu() {
+    const toggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    if (!toggle || !navLinks) return;
+
+    toggle.addEventListener("click", () => {
+        toggle.classList.toggle("active");
+        navLinks.classList.toggle("active");
+        document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            toggle.classList.remove("active");
+            navLinks.classList.remove("active");
+            document.body.style.overflow = "";
+        });
+    });
+}
+
+// ─────────────────────────────────────────────────────────────
+// 6. YEAR AUTO-UPDATE
 // ─────────────────────────────────────────────────────────────
 function setYear() {
     const el = document.getElementById("year");
@@ -136,21 +174,54 @@ function setYear() {
 }
 
 // ─────────────────────────────────────────────────────────────
-// INICIALIZACIÓN: Cuando el DOM carga, arrancamos todo
+// 7. SMOOTH ANCHOR SCROLL (enhanced native)
 // ─────────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", function () {
-    // Arrancar efecto de escritura
-    if (wordsArray.length) setTimeout(type, 1500);
-    
-    // Crear partículas flotantes
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", (e) => {
+            const targetId = anchor.getAttribute("href");
+            if (targetId === "#") return;
+
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                const navHeight = document.querySelector(".navbar")?.offsetHeight || 72;
+                const targetPos = target.getBoundingClientRect().top + window.scrollY - navHeight;
+
+                window.scrollTo({
+                    top: targetPos,
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
+}
+
+// ─────────────────────────────────────────────────────────────
+// INITIALIZATION
+// ─────────────────────────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+    // Typing effect
+    if (wordsArray.length) setTimeout(type, 1800);
+
+    // Particles
     createParticles();
-    
-    // Arrancar observador de scroll para animaciones fade-in
-    initScrollAnimations();
-    
-    // Inicializar menú móvil
+
+    // Scroll reveal
+    initScrollReveal();
+
+    // Mesh interaction
+    initMeshInteraction();
+
+    // Navbar scroll effect
+    initNavbar();
+
+    // Mobile menu
     initMobileMenu();
-    
-    // Poner el año actual en el pie de página
+
+    // Smooth scroll
+    initSmoothScroll();
+
+    // Year
     setYear();
 });
