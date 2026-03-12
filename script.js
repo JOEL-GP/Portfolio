@@ -224,4 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Year
     setYear();
+
+    // Katana Cursor
+    initKatanaCursor();
 });
