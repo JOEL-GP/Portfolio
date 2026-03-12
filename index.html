@@ -19,6 +19,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
 
@@ -65,15 +68,19 @@
         <!-- ========================================================
              HERO — Asymmetric Layout con Spline 3D
              ======================================================== -->
-            <!-- Morphing Glass Mesh Background -->
+            <!-- Video Background: Tokyo Ghoul -->
             <div class="hero-bg-wrapper">
-                <div class="mesh-container">
-                    <div class="mesh-layer layer-1"></div>
-                    <div class="mesh-layer layer-2"></div>
-                    <div class="mesh-layer layer-3"></div>
-                </div>
-                <div class="katana-slash"></div>
-                <div class="katana-slash alt"></div>
+                <video 
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline 
+                    class="hero-video"
+                    poster="assets/hero-poster.jpg"
+                >
+                    <source src="kaneki-one-eye-tokyo-ghoul-moewalls-com.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
                 <div class="hero-overlay"></div>
                 <div class="grain-overlay"></div>
             </div>
@@ -246,22 +253,11 @@
                     </div>
                 </article>
 
-                <!-- Decorative Mesh Card -->
+                <!-- Decorative Video Mini-Card -->
                 <article class="bento-card bento-visual glass-card reveal-element" id="project-visual">
-                    <div class="mesh-container mini-mesh">
-                        <div class="mesh-layer layer-1"></div>
-                        <div class="mesh-layer layer-2"></div>
-                    </div>
-                </article>
-
-                <!-- UI/UX Pro Max Skill Card -->
-                <article class="bento-card glass-card reveal-element" id="skill-uupm">
-                    <div class="card-content">
-                        <span class="card-tag">NEW SKILL</span>
-                        <h3 class="card-title">UI/UX Pro Max</h3>
-                        <p class="card-desc">Design intelligence & advanced UX strategy (Next Level Builder).</p>
-                        <div class="card-icon">✨</div>
-                    </div>
+                    <video autoplay muted loop playsinline class="mini-video">
+                        <source src="kaneki-one-eye-tokyo-ghoul-moewalls-com.mp4" type="video/mp4">
+                    </video>
                 </article>
             </div>
         </section>
