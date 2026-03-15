@@ -8,204 +8,161 @@ gsap.registerPlugin(ScrollTrigger)
 const projects = [
   {
     id: 1,
-    tag: 'Web Design',
-    title: 'Landing Page para Eventos',
-    desc: 'Diseño de landing pages con integración de mapas y confirmación vía API de WhatsApp.',
-    emoji: '🚀',
-    size: 'featured'
+    tag: 'Sistemas & Estrategia',
+    title: 'Ecosistema de Gestión Digital',
+    desc: 'Arquitectura y despliegue de plataformas de gestión optimizadas para flujos de trabajo dinámicos, integrando APIs de comunicación directa.',
+    emoji: '💎'
   },
   {
     id: 2,
-    tag: 'Creative',
-    title: 'Cartas de Invitación Digitales',
-    desc: 'Invitaciones interactivas y animadas, totalmente responsivas para compartir por redes.',
-    emoji: '🎫'
+    tag: 'Desarrollo Creativo',
+    title: 'Interfaces de Alta Fidelidad',
+    desc: 'Diseño de experiencias interactivas con un enfoque en la estética visual y rendimiento, utilizando tecnologías de punta para una navegación fluida.',
+    emoji: '📂'
   },
   {
     id: 3,
-    tag: 'Systems',
-    title: 'Sistema de Soporte',
-    desc: 'Diseño de workflow para categorización de tickets y control de tiempos de respuesta.',
-    emoji: '🤖'
+    tag: 'Infraestructura',
+    title: 'Soporte Técnico de Nivel Pro',
+    desc: 'Optimización de hardware y software, garantizando la continuidad operativa y seguridad en entornos de alto rendimiento.',
+    emoji: '🛠️'
   },
   {
     id: 4,
-    tag: 'Próximamente',
-    title: 'Próximos Proyectos IA',
-    desc: 'Pronto subiré aplicaciones usando IAs locales y nuevas tecnologías del ecosistema.',
-    emoji: '⏳',
-    size: 'wide'
+    tag: 'Evolución IA',
+    title: 'Integración de IA Generativa',
+    desc: 'Exploración y aplicación de modelos de lenguaje locales y herramientas de automatización para potenciar la productividad creativa.',
+    emoji: '🧠'
   }
 ]
 
 const skills = [
-  { icon: '🌐', name: 'WordPress & Elementor' },
-  { icon: '💻', name: 'HTML / CSS / JS' },
-  { icon: '🎬', name: 'OBS Studio & Streaming' },
-  { icon: '🤖', name: 'IA Aplicada & Prompts' },
-  { icon: '🗄️', name: 'SQL & Git/GitHub' },
-  { icon: '🔧', name: 'Soporte & Reparación PC' },
-  { icon: '📊', name: 'Trello & Gestión' },
-  { icon: '🎨', name: 'Flyers & Diseño Visual' }
+  { icon: '🌐', name: 'Web Architect' },
+  { icon: '💻', name: 'Modern Stack' },
+  { icon: '🎬', name: 'Media Production' },
+  { icon: '🤖', name: 'AI Engineering' },
+  { icon: '🗄️', name: 'Data Management' },
+  { icon: '🔧', name: 'System Support' },
+  { icon: '📊', name: 'Agile Workflow' },
+  { icon: '🎨', name: 'Visual Design' }
 ]
 
-const words = ['Analista de Sistemas', 'Desarrollador Web', 'Entusiasta de la IA', 'Freelancer Creativo']
+const words = ['Analista de Sistemas', 'Concept Architect', 'AI Implementation', 'Creative Developer']
 
 function App() {
   const [typedText, setTypedText] = useState('')
   const [wordIndex, setWordIndex] = useState(0)
   const heroRef = useRef(null)
-  const titleRef = useRef(null)
   const particlesRef = useRef(null)
   const cardsRef = useRef([])
 
   useEffect(() => {
+    const cursor = document.getElementById('katana-cursor')
+    const moveCursor = (e) => {
+      gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.1,
+        ease: 'power2.out'
+      })
+    }
+    window.addEventListener('mousemove', moveCursor)
+    return () => window.removeEventListener('mousemove', moveCursor)
+  }, [])
+
+  useEffect(() => {
     const particlesContainer = particlesRef.current
     if (!particlesContainer) return
-
-    const colors = ['rgba(0, 255, 170, 0.6)', 'rgba(123, 97, 255, 0.5)', 'rgba(116, 172, 223, 0.4)']
-    
-    for (let i = 0; i < 50; i++) {
+    const colors = ['rgba(0, 255, 210, 0.4)', 'rgba(139, 92, 246, 0.3)']
+    for (let i = 0; i < 40; i++) {
       const particle = document.createElement('div')
       particle.className = 'particle'
-      const size = Math.random() * 4 + 2
+      const size = Math.random() * 3 + 1
       particle.style.width = `${size}px`
       particle.style.height = `${size}px`
       particle.style.left = `${Math.random() * 100}%`
       particle.style.background = colors[Math.floor(Math.random() * colors.length)]
-      particle.style.animationDuration = `${Math.random() * 15 + 10}s`
-      particle.style.animationDelay = `${Math.random() * 20}s`
+      particle.style.animationDuration = `${Math.random() * 20 + 15}s`
+      particle.style.animationDelay = `${Math.random() * 10}s`
       particlesContainer.appendChild(particle)
     }
   }, [])
 
   useEffect(() => {
     let currentIndex = 0
-    let currentWord = ''
     let isDeleting = false
-
     const type = () => {
       const word = words[wordIndex]
-      
       if (isDeleting) {
-        currentWord = word.substring(0, currentIndex - 1)
+        setTypedText(word.substring(0, currentIndex - 1))
         currentIndex--
       } else {
-        currentWord = word.substring(0, currentIndex + 1)
+        setTypedText(word.substring(0, currentIndex + 1))
         currentIndex++
       }
-
-      setTypedText(currentWord)
-
-      let delay = isDeleting ? 30 : 80
-
+      let delay = isDeleting ? 40 : 100
       if (!isDeleting && currentIndex === word.length) {
-        delay = 2500
+        delay = 3000
         isDeleting = true
       } else if (isDeleting && currentIndex === 0) {
         isDeleting = false
         setWordIndex((prev) => (prev + 1) % words.length)
-        delay = 300
+        delay = 500
       }
-
       setTimeout(type, delay)
     }
-
-    setTimeout(type, 1500)
+    const timer = setTimeout(type, 2000)
+    return () => clearTimeout(timer)
   }, [wordIndex])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from('.hero-content > *', {
-        y: 60,
+        y: 80,
         opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: 'power3.out',
-        delay: 0.3
-      })
-
-      gsap.to('.hero-glow', {
-        scale: 1.2,
-        opacity: 0.8,
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut'
+        duration: 1.2,
+        stagger: 0.2,
+        ease: 'power4.out',
+        delay: 0.5
       })
 
       gsap.from('.nav-inner > *', {
-        y: -30,
+        y: -40,
         opacity: 0,
-        duration: 0.8,
+        duration: 1,
         stagger: 0.1,
-        ease: 'power3.out'
+        ease: 'expo.out'
       })
 
       ScrollTrigger.batch('.reveal', {
         onEnter: batch => gsap.to(batch, {
           opacity: 1,
           y: 0,
-          stagger: 0.15,
-          duration: 0.8,
-          ease: 'power3.out'
-        })
-      })
-
-      cardsRef.current.forEach((card, i) => {
-        gsap.from(card, {
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-          },
-          y: 60,
-          opacity: 0,
-          duration: 0.8,
-          delay: i * 0.1,
+          stagger: 0.2,
+          duration: 1,
           ease: 'power3.out'
         })
       })
     })
-
     return () => ctx.revert()
   }, [])
-
-  const handleMouseMove = (e) => {
-    const cards = document.querySelectorAll('.bento-card')
-    cards.forEach(card => {
-      const rect = card.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      card.style.setProperty('--mouse-x', `${x}px`)
-      card.style.setProperty('--mouse-y', `${y}px`)
-    })
-  }
 
   return (
     <div className="app">
       <div id="particles-container" ref={particlesRef}></div>
-      
-      <div className="katana-cursor" id="katana-cursor">
-        <div className="cursor-dot"></div>
-      </div>
+      <div className="katana-cursor" id="katana-cursor"></div>
 
-      <nav className="navbar" id="navbar">
+      <nav className="navbar">
         <div className="nav-inner">
-          <a href="#inicio" className="logo">
-            <svg className="flag-icon" viewBox="0 0 30 20" width="28" height="18">
-              <rect y="0" width="30" height="7" fill="#74ACDF"/>
-              <rect y="7" width="30" height="6" fill="#FFFFFF"/>
-              <rect y="13" width="30" height="7" fill="#74ACDF"/>
-              <circle cx="15" cy="10" r="2.5" fill="#F6B40E" stroke="#85340A" strokeWidth="0.3"/>
-            </svg>
-            <span className="logo-text">Joel<span className="logo-accent">Dev</span></span>
+          <a href="#" className="logo">
+            <span className="logo-text">Joel<span className="logo-accent">.</span>Studio</span>
           </a>
           <ul className="nav-links">
-            <li><a href="#inicio" className="nav-link">Inicio</a></li>
-            <li><a href="#sobre-mi" className="nav-link">Sobre Mí</a></li>
-            <li><a href="#portafolio" className="nav-link">Portafolio</a></li>
-            <li><a href="#contacto" className="nav-link">Contacto</a></li>
-            <li><a href="cv.html" className="nav-link nav-cta">Ver CV</a></li>
+            <li><a href="#inicio" className="nav-link">Home</a></li>
+            <li><a href="#sobre-mi" className="nav-link">About</a></li>
+            <li><a href="#portafolio" className="nav-link">Work</a></li>
+            <li><a href="#contacto" className="nav-link">Contact</a></li>
+            <li><a href="cv.html" className="nav-link nav-cta">Curriculum</a></li>
           </ul>
         </div>
       </nav>
@@ -216,158 +173,103 @@ function App() {
             <source src="kaneki-one-eye-tokyo-ghoul-moewalls-com.mp4" type="video/mp4" />
           </video>
           <div className="hero-overlay"></div>
-          <div className="scanlines"></div>
-          <div className="grain-overlay"></div>
         </div>
         
-        <div className="hero-glow"></div>
-
         <div className="hero-container">
           <div className="hero-content">
             <p className="hero-eyebrow">
               <span className="eyebrow-line"></span>
-              <span className="mono-text">Analista de Sistemas · Creador Digital</span>
+              <span className="mono-text">Sistemas & Diseño de Vanguardia</span>
             </p>
-            <h1 className="hero-title" ref={titleRef} data-text="Joel Paredes">
+            <h1 className="hero-title">
               Joel<br/><span className="title-accent">Paredes</span>
             </h1>
-            <div className="hero-typing">
-              <span className="mono-text typing-prefix">&gt;&nbsp;</span>
-              <span className="mono-text typed-output">{typedText}</span>
-              <span className="cursor">_</span>
+            <div className="hero-description mono-text">
+              &gt; {typedText}<span className="cursor">_</span>
+              <br/><br/>
+              Especialista en arquitectura de sistemas y creación de productos digitales de alta gama. Fusionando tecnología de precisión con estética minimalista.
             </div>
-            <p className="hero-description">
-              Transformo ideas en experiencias digitales. Soporte técnico, gestión de contenidos y exploración constante de <strong>Inteligencia Artificial</strong>.
-            </p>
-            <p className="hero-location mono-text">
-              📍 J.J. Castelli, Chaco, Argentina
-            </p>
             <div className="hero-actions">
-              <a href="#portafolio" className="btn btn-primary">
-                <span>Ver Proyectos</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-              </a>
-              <a href="cv.html" className="btn btn-ghost">
-                <span>Mi CV</span>
-              </a>
+              <a href="#portafolio" className="btn btn-primary">Ver Portafolio</a>
+              <a href="#contacto" className="btn btn-ghost">Hablemos</a>
             </div>
           </div>
-        </div>
-
-        <div className="scroll-indicator">
-          <span className="mono-text">scroll</span>
-          <div className="scroll-line"></div>
         </div>
       </section>
 
       <section id="sobre-mi" className="about">
-        <div className="section-header">
-          <span className="section-tag mono-text reveal">01</span>
-          <h2 className="section-title reveal">Sobre Mí <i className="ph ph-sword">⚔️</i></h2>
-          <p className="section-subtitle mono-text reveal">// Conoce mi perfil y lo que manejo</p>
+        <div className="section-header reveal" style={{ opacity: 0, transform: 'translateY(40px)' }}>
+          <span className="section-tag">01 / Profile</span>
+          <h2 className="section-title">Filosofía de Trabajo</h2>
         </div>
 
-        <div className="about-grid">
-          <div className="about-terminal glass-card reveal">
+        <div className="bento-grid">
+          <div className="bento-card glass-card reveal" style={{ opacity: 0, transform: 'translateY(40px)' }}>
+            <div>
+              <h3 className="card-title">Visión Técnica</h3>
+              <p className="card-desc">Como Analista de Sistemas, mi enfoque se centra en la eficiencia operativa y la escalabilidad. No solo construyo herramientas, diseño ecosistemas digitales que responden a necesidades reales con precisión quirúrgica.</p>
+            </div>
             <div className="terminal-header">
-              <div className="terminal-dots">
-                <span className="dot dot-red"></span>
-                <span className="dot dot-yellow"></span>
-                <span className="dot dot-green"></span>
-              </div>
-              <span className="terminal-title mono-text">joel@portfolio:~$</span>
-            </div>
-            <div className="terminal-body">
-              <p><span className="cmd">&gt;</span> Analista de Sistemas con experiencia práctica en <strong>administración web</strong>, producción audiovisual, soporte técnico y gestión de contenidos digitales.</p>
-              <p><span className="cmd">&gt;</span> Manejo de herramientas de <strong>automatización e IA aplicada</strong>. Proactivo, con facilidad para aprender nuevas tecnologías.</p>
-              <p><span className="cmd">&gt;</span> Actualmente explorando el mundo de las <strong>Inteligencias Artificiales</strong>: Open Claw, Open Code, IAs locales y todo lo que viene.</p>
+              <div className="dot dot-red"></div>
+              <div className="dot dot-yellow"></div>
+              <div className="dot dot-green"></div>
             </div>
           </div>
 
-          <div className="about-accent">
-            <div className="accent-blob"></div>
+          <div className="bento-card glass-card reveal" style={{ opacity: 0, transform: 'translateY(40px)' }}>
+            <h3 className="card-title">Innovación IA</h3>
+            <p className="card-desc">Implementación proactiva de soluciones basadas en IA generativa para optimizar flujos creativos y técnicos.</p>
           </div>
 
-          <div className="about-skills">
-            <h3 className="skills-label mono-text reveal">Tech Stack</h3>
-            <div className="skills-grid">
-              {skills.map((skill, i) => (
-                <div key={i} className="skill-tag glass-card reveal" style={{animationDelay: `${i * 0.05}s`}}>
-                  <span className="skill-icon">{skill.icon}</span>
-                  <span>{skill.name}</span>
-                </div>
+          <div className="bento-card glass-card reveal" style={{ opacity: 0, transform: 'translateY(40px)' }}>
+            <h3 className="card-title">Stack</h3>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {skills.slice(0, 4).map((s, i) => (
+                <span key={i} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs mono-text">{s.name}</span>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="portafolio" className="portfolio" onMouseMove={handleMouseMove}>
-        <div className="section-header">
-          <span className="section-tag mono-text reveal">02</span>
-          <h2 className="section-title reveal">Portafolio <i className="ph ph-sword">⚔️</i></h2>
-          <p className="section-subtitle mono-text reveal">// Proyectos y trabajos realizados</p>
+      <section id="portafolio" className="portfolio">
+        <div className="section-header reveal" style={{ opacity: 0, transform: 'translateY(40px)' }}>
+          <span className="section-tag">02 / Selected Work</span>
+          <h2 className="section-title">Proyectos Destacados</h2>
         </div>
 
         <div className="bento-grid">
-          {projects.map((project, i) => (
-            <article 
-              key={project.id} 
-              className={`bento-card glass-card reveal ${project.size === 'featured' ? 'bento-featured' : ''} ${project.size === 'wide' ? 'bento-wide' : ''}`}
-              ref={el => cardsRef.current[i] = el}
-            >
-              <div className="card-glow"></div>
-              <div className="card-content">
-                <span className="card-tag mono-text">{project.tag}</span>
+          {projects.map((project) => (
+            <div key={project.id} className="bento-card glass-card reveal" style={{ opacity: 0, transform: 'translateY(40px)' }}>
+              <div>
+                <span className="text-[10px] uppercase tracking-widest text-accent opacity-70 mb-2 block">{project.tag}</span>
                 <h3 className="card-title">{project.title}</h3>
                 <p className="card-desc">{project.desc}</p>
-                <a href="#" className="card-link" target="_blank">
-                  <span>Ver Demo</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                </a>
               </div>
-              <div className="card-visual">
-                <span className="card-emoji">{project.emoji}</span>
+              <div className="mt-6 flex items-center justify-between">
+                <span className="text-3xl grayscale opacity-30">{project.emoji}</span>
+                <span className="text-[10px] mono-text opacity-40 uppercase">Case Study // 2024</span>
               </div>
-            </article>
+            </div>
           ))}
         </div>
       </section>
 
       <section id="contacto" className="contact">
-        <div className="contact-grid">
-          <div className="contact-text reveal">
-            <div className="section-header section-header--left">
-              <span className="section-tag mono-text">03</span>
-              <h2 className="section-title">Hablemos</h2>
-              <p className="section-subtitle mono-text">// ¿Listo para arrancar tu proyecto?</p>
-            </div>
-            <p className="contact-description">
-              Diseño, software, automatización e inteligencia artificial. Escribime y hagamos realidad tu idea.
-            </p>
+        <div className="max-w-[1400px] mx-auto px-6 grid md:grid-cols-2 gap-12">
+          <div className="reveal" style={{ opacity: 0, transform: 'translateY(40px)' }}>
+            <span className="section-tag">03 / Connect</span>
+            <h2 className="section-title">Iniciemos algo grande.</h2>
+            <p className="text-xl text-secondary mt-6">Disponible para proyectos estratégicos de sistemas y diseño digital.</p>
           </div>
-
-          <div className="contact-card glass-card reveal">
-            <a href="mailto:joeleliaspared@gmail.com" className="contact-item">
-              <span className="contact-icon">📧</span>
-              <div>
-                <span className="contact-label mono-text">Email</span>
-                <span className="contact-value">joeleliaspared@gmail.com</span>
-              </div>
+          <div className="space-y-4 reveal" style={{ opacity: 0, transform: 'translateY(40px)' }}>
+            <a href="mailto:joeleliaspared@gmail.com" className="btn btn-ghost w-full justify-between">
+              <span>Email</span>
+              <span className="text-accent underline">joeleliaspared@gmail.com</span>
             </a>
-            <a href="tel:+543644165579" className="contact-item">
-              <span className="contact-icon">📞</span>
-              <div>
-                <span className="contact-label mono-text">Teléfono</span>
-                <span className="contact-value">3644165579</span>
-              </div>
-            </a>
-            <a href="https://github.com/JOEL-GP" className="contact-item" target="_blank">
-              <span className="contact-icon">🐙</span>
-              <div>
-                <span className="contact-label mono-text">GitHub</span>
-                <span className="contact-value">JOEL-GP</span>
-              </div>
+            <a href="https://github.com/JOEL-GP" className="btn btn-ghost w-full justify-between">
+              <span>GitHub</span>
+              <span className="text-accent underline">JOEL-GP</span>
             </a>
           </div>
         </div>
@@ -375,17 +277,12 @@ function App() {
 
       <footer className="footer">
         <div className="footer-inner">
-          <div className="footer-flag">
-            <svg viewBox="0 0 90 60" width="50" height="33">
-              <rect y="0" width="90" height="20" fill="#74ACDF"/>
-              <rect y="20" width="90" height="20" fill="#FFFFFF"/>
-              <rect y="40" width="90" height="20" fill="#74ACDF"/>
-              <circle cx="45" cy="30" r="7" fill="#F6B40E" stroke="#85340A" strokeWidth="0.8"/>
-            </svg>
-          </div>
-          <p className="footer-copy mono-text">&copy; <span id="year"></span> Joel Paredes — Hecho en Argentina 🇦🇷</p>
-          <p className="footer-sub mono-text">Analista de Sistemas · Todos los derechos reservados</p>
-          <p className="footer-credit mono-text">Creado con ❤️ y la asistencia de <a href="https://antigravity.google" target="_blank">Antigravity AI</a></p>
+          <p className="mono-text text-sm opacity-60">
+            &copy; 2024 Joel Paredes — J.J. Castelli, Chaco.
+          </p>
+          <p className="footer-sub mono-text">
+            Este sitio fue generado con IA generativa para una experiencia digital premium.
+          </p>
         </div>
       </footer>
     </div>
