@@ -11,11 +11,7 @@
 const typedTextSpan = document.getElementById("typed-output");
 
 const wordsArray = [
-    "Analista de Sistemas",
-    "Desarrollador Web",
-    "Entusiasta de la IA",
-    "Soporte Técnico & Streaming",
-    "Freelancer Creativo"
+    "Analista de Sistemas"
 ];
 
 const typingDelay = 70;
