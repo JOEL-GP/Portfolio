@@ -23,6 +23,8 @@ const erasingDelay = 35;
 const newWordDelay = 2500;
 let wordIndex = 0;
 let charIndex = 0;
+let typeTimeout;
+let eraseTimeout;
 
 function type() {
     if (charIndex < wordsArray[wordIndex].length) {
@@ -30,7 +32,8 @@ function type() {
         charIndex++;
         setTimeout(type, typingDelay);
     } else {
-        setTimeout(erase, newWordDelay);
+        clearTimeout(typeTimeout);
+        typeTimeout = setTimeout(erase, newWordDelay);
     }
 }
 
@@ -40,8 +43,9 @@ function erase() {
         charIndex--;
         setTimeout(erase, erasingDelay);
     } else {
+        clearTimeout(eraseTimeout);
         wordIndex = (wordIndex + 1) % wordsArray.length;
-        setTimeout(type, typingDelay + 300);
+        eraseTimeout = setTimeout(type, typingDelay + 300);
     }
 }
 
